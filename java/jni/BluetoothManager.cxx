@@ -285,6 +285,26 @@ jobject Java_tinyb_BluetoothManager_getDevices(JNIEnv *env, jobject obj)
     return nullptr;
 }
 
+jboolean Java_tinyb_BluetoothManager_removeAllDevices(JNIEnv *env, jobject obj)
+{
+    try {
+        BluetoothManager *manager = getInstance<BluetoothManager>(env, obj);
+
+        return manager->remove_all_devices() ? JNI_TRUE : JNI_FALSE;
+    } catch (std::bad_alloc &e) {
+        raise_java_oom_exception(env, e);
+    } catch (BluetoothException &e) {
+        raise_java_bluetooth_exception(env, e);
+    } catch (std::runtime_error &e) {
+        raise_java_runtime_exception(env, e);
+    } catch (std::invalid_argument &e) {
+        raise_java_invalid_arg_exception(env, e);
+    } catch (std::exception &e) {
+        raise_java_exception(env, e);
+    }
+    return JNI_FALSE;
+}
+
 jobject Java_tinyb_BluetoothManager_getServices(JNIEnv *env, jobject obj)
 {
     try {

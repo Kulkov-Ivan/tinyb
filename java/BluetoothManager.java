@@ -180,6 +180,11 @@ public class BluetoothManager
       */
     public native List<BluetoothDevice> getDevices();
 
+    /** Removes all discovered BluetoothDevices
+      * @return TRUE if all devices were removed
+      */
+    public native boolean removeAllDevices();
+
     /** Returns a list of available BluetoothGattServices
       * @return A list of available BluetoothGattServices
       */

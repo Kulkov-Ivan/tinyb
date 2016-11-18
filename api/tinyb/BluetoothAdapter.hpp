@@ -48,14 +48,6 @@ friend class tinyb::BluetoothNotificationHandler;
 private:
     Adapter1 *object;
 
-    /** Removes a device from the list of devices available on this adapter.
-      * @param[in] arg_device The path of the device on DBus
-      * @return TRUE if device was successfully removed
-      */
-    bool remove_device (
-        const std::string &arg_device
-    );
-
 protected:
     BluetoothAdapter(Adapter1 *object);
 
@@ -115,6 +107,14 @@ public:
       * NULL if an error occurred
       */
     std::vector<std::unique_ptr<BluetoothDevice>> get_devices (
+    );
+
+    /** Removes a device from the list of devices available on this adapter.
+      * @param[in] arg_device The path of the device on DBus
+      * @return TRUE if device was successfully removed
+      */
+    bool remove_device (
+            const std::string &arg_device
     );
 
     /* D-Bus property accessors: */

@@ -212,6 +212,12 @@ public:
     std::vector<std::unique_ptr<BluetoothDevice>> get_devices(
     );
 
+    /** Removes all discovered BluetoothDevices
+     * @return TRUE if all devices were removed
+     */
+    bool remove_all_devices(
+    );
+
     /** Returns a list of available BluetoothGattServices
       * @return A list of available BluetoothGattServices
       */

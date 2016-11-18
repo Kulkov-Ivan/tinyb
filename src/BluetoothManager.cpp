@@ -34,6 +34,7 @@
 #include "version.h"
 
 #include <cassert>
+#include <tinyb_utils.hpp>
 
 using namespace tinyb;
 
@@ -342,6 +343,26 @@ std::vector<std::unique_ptr<BluetoothDevice>> BluetoothManager::get_devices()
     }
 
     return vector;
+}
+
+bool BluetoothManager::remove_all_devices()
+{
+    if (default_adapter == nullptr)
+        return false;
+    bool result = false;
+
+    GList *l, *objects = g_dbus_object_manager_get_objects(gdbus_manager);
+
+    for (l = objects; l != NULL; l = l->next) {
+        Object *object = OBJECT(l->data);
+
+        auto p = BluetoothDevice::make(object);
+        if (p != nullptr) {
+            result += default_adapter->remove_device(p->get_object_path());
+        }
+    }
+
+    return result;
 }
 
 std::vector<std::unique_ptr<BluetoothGattService>> BluetoothManager::get_services()
