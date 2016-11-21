@@ -314,12 +314,12 @@ public class BluetoothDevice extends BluetoothObject
      /** Returns the transmission power level (0 means unknown).
       * @return the transmission power level (0 means unknown).
       */
-    public native short getTxPower ();
+    public native short getTxPower();
 
      /** Returns true if service discovery has ended.
       * @return true if the service discovery has ended.
       */
-    public native boolean getServicesResolved ();
+    public native boolean getServicesResolved();
 
     /**
      * Enables notifications for the services resolved property and calls run function of the
