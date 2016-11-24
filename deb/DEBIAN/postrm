@@ -1,0 +1,4 @@
+#!/bin/sh
+
+export EXT_HOME="$(update-alternatives --query java | grep 'Value: ' | grep -o '/.*/jre')"/lib/ext/
+rm -f $EXT_HOME/tinyb.jar
