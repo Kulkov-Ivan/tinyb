@@ -3,7 +3,9 @@ include(UseJava)
 
 if (NOT DEFINED $ENV{JAVA_HOME_NATIVE})
   set (JAVA_HOME_NATIVE $ENV{JAVA_HOME})
-  set (JAVAC $ENV{JAVA_HOME}/bin/javac)
+  set (JAVAC $ENV{JAVA_HOME}/bin/javac)# CPack DEB
+INCLUDE(CPack)
+
   set (JAR $ENV{JAVA_HOME}/bin/jar)
 else ()
   set (JAVAC $ENV{JAVA_HOME_NATIVE}/bin/javac)
@@ -44,6 +46,6 @@ add_custom_command (TARGET tinybjar
 )
 
 set(JNI_HEADER_PATH "${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_FILES_DIRECTORY}/tinybjar.dir/jni")
-install (FILES ${CMAKE_CURRENT_BINARY_DIR}/tinyb.jar DESTINATION ${CMAKE_INSTALL_LIBDIR}/../lib/java)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/tinyb.jar DESTINATION ${CMAKE_INSTALL_LIBDIR}/java)
 
 add_subdirectory (jni)

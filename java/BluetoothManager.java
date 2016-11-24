@@ -37,7 +37,7 @@ public class BluetoothManager
             System.loadLibrary("javatinyb");
         } catch (UnsatisfiedLinkError e) {
             System.err.println("Native code library failed to load.\n" + e);
-            System.exit(-1);
+            throw e;
         }
     }
 
@@ -220,7 +220,6 @@ public class BluetoothManager
         if (inst == null)
         {
             inst = new BluetoothManager();
-            inst.init();
             String nativeAPIVersion = getNativeAPIVersion();
             String APIVersion = BluetoothManager.class.getPackage().getSpecificationVersion();
             if (APIVersion.equals(nativeAPIVersion) == false) {

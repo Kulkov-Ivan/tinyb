@@ -35,7 +35,7 @@ public abstract class BluetoothObject implements Cloneable
             System.loadLibrary("javatinyb");
         } catch (UnsatisfiedLinkError e) {
             System.err.println("Native code library failed to load.\n" + e);
-            System.exit(-1);
+            throw e;
         }
     }
 
